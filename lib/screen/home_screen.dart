@@ -30,12 +30,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF5C5E61),
-      body: Column(
-        children: [
-          SizedBox(
+      body: CustomScrollView(slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
             height: 50.0,
           ),
-          Container(
+        ),
+        SliverToBoxAdapter(
+          child: Container(
+            alignment: Alignment.center,
             child: Text(
               'Jeju free Wifi Place\n',
               style: TextStyle(
@@ -44,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          Container(
+        ),
+        SliverToBoxAdapter(
+          child: Container(
             padding: EdgeInsets.only(left: 10.0),
             alignment: Alignment.centerLeft,
             child: Text(
@@ -55,8 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w100),
             ),
           ),
-          SizedBox(height: 40.0),
-          Container(
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(height: 40.0),
+        ),
+        SliverToBoxAdapter(
+          child: Container(
             margin: EdgeInsets.only(right: 15.0),
             alignment: Alignment.centerRight,
             child: Text(
@@ -66,10 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 10.0,
-          ),
-          GestureDetector(
+        ),
+        SliverToBoxAdapter(
+          child: GestureDetector(
             onTap: () {
               print('DownLoading');
               _downloadApiData();
@@ -98,18 +106,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
             ),
           ),
-          SizedBox(
-            height: 100.0,
-          ),
-          GestureDetector(
+        ),
+        SliverPadding(padding: EdgeInsets.only(top: 20.0, bottom: 20.0)),
+        SliverToBoxAdapter(
+          child: GestureDetector(
             onTap: dbData
                 ? () {
                     print('go to map');
                     _dbHelper.getCount().then((value) {
                       print(value);
                     });
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MapScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MapScreen(
+                                  detailDataList: _detailDataList,
+                                )));
                   }
                 : () {
                     Toast.show("Please download wifi information", context,
@@ -135,10 +147,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 50.0,
-          ),
-          Container(
+        ),
+        SliverPadding(padding: EdgeInsets.only(top: 20.0, bottom: 20.0)),
+        SliverToBoxAdapter(
+          child: Container(
             margin: EdgeInsets.only(left: 10.0, right: 10.0),
             child: Column(
               children: [
@@ -168,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ]),
     );
   }
 

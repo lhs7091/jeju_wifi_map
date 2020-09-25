@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:jeju_wifi_map/api/api_key.dart';
+import 'package:jeju_wifi_map/api/api_keys.dart';
 import 'package:jeju_wifi_map/model/data_model.dart';
 import 'package:jeju_wifi_map/model/wifi_model.dart';
-import 'package:toast/toast.dart';
 
 class APIService {
   int dataNum = 1;
