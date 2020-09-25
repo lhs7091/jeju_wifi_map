@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:jeju_wifi_map/homepage.dart';
-import 'package:jeju_wifi_map/map_screen.dart';
-import 'package:jeju_wifi_map/myposition.dart';
+import 'package:jeju_wifi_map/screen/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,8 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'redOffice',
+            ),
       ),
-      home: MapScreen(),
+      home: HomeScreen(),
     );
   }
 }
